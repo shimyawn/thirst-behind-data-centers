@@ -197,41 +197,36 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
   .rank{height:120px;gap:2px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.home .hero{padding-top:4vh}.home .hero h1{font-size:clamp(40px,5vw,68px)}.home .hero .lede{margin-top:12px}
+.testbox{margin-top:22px;max-width:600px;background:rgba(22,34,43,.88);border:1px solid var(--line);border-radius:16px;padding:26px 26px 24px;backdrop-filter:blur(6px)}
+.testbox .step h2{font-size:clamp(28px,3.6vw,40px)}
+.testbox .ctas{margin-top:24px}
+.deeper{border-top:1px solid var(--line);background:var(--bg2,#16222B);position:relative;z-index:2}
+.deeper .wrap{padding-top:64px;padding-bottom:80px}
+.deeper h2{font-size:clamp(30px,4vw,48px);margin-top:10px}
+.deeper .lead{max-width:62ch;margin-top:14px;color:var(--sub)}
+.chaps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+.chaps a{display:flex;flex-direction:column;gap:6px;padding:18px;border:1px solid var(--line);border-radius:12px;color:var(--text);text-decoration:none;background:var(--bg)}
+.chaps a:hover,.chaps a:focus-visible{border-color:var(--focus)}
+.chaps b{font-size:17px}.chaps span{font-size:14px;color:var(--sub)}.chaps em{font-style:normal;font-size:13px;font-weight:600;color:var(--focus);margin-top:4px}
+@media (max-width:860px){.chaps{grid-template-columns:1fr}.testbox{padding:20px 18px}}
 </style>
 </head>
 <body>
 <header class="top"><div class="wrap">
   <button class="brand" type="button" data-go="home" aria-label="Home">Thirst <i>Check</i></button>
-  <nav class="nav" aria-label="Sections"><a href="#test" data-v="test">Test</a><a href="#map" data-v="map">Map</a><a href="#about" data-v="about">About</a></nav>
+  <nav class="nav" aria-label="Sections"><a href="#home" data-v="home">Check</a><a href="#map" data-v="map">The data</a><a href="#about" data-v="about">About</a></nav>
 </div></header>
 
 <main>
 <section class="view home" id="v-home">
-  <div class="art" aria-hidden="true"><canvas id="artC"></canvas></div>
-  <div class="wrap">
+  <div class="art" id="artWrap" aria-hidden="true"><canvas id="artC"></canvas></div>
+  <div class="wrap hero" id="heroWrap">
     <span class="k">AI × water · United States</span>
     <h1 style="margin-top:14px">Your AI sips.<br><em>Data centers drink.</em></h1>
-    <p class="lede">Tell us where you live and how much you use AI. We’ll show the gap between your drop and the data centers rising around you.</p>
-    <div class="doors">
-      <button class="door" type="button" data-go="test"><b>Check my gap</b><span>Your state + your AI habit. Two taps.</span><em>Start · 1 min →</em></button>
-      <button class="door r" type="button" data-go="map"><b>See the whole map</b><span>5,042 data center records over water stress, drought and rules.</span><em>Explore →</em></button>
-    </div>
-    <div class="qs" aria-label="Questions this site answers">
-      <button class="q" type="button" data-go="test"><b>01</b>Is my state building where water is already stretched?</button>
-      <button class="q" type="button" data-go="test"><b>02</b>How much water does my AI habit use?</button>
-      <button class="q" type="button" data-go="map"><b>03</b>Where do water stress and drought overlap?</button>
-      <button class="q" type="button" data-go="map"><b>04</b>Do local rules protect water?</button>
-    </div>
-    <div class="facts">
-      <div><strong>70.6%</strong><span>of planned or under-construction data centers sit in high water stress. Running ones: 69.8%</span></div>
-      <div><strong style="color:var(--both)">353</strong><span>of 1,585 new projects face high stress <i>and</i> frequent drought</span></div>
-      <div><strong style="color:var(--risk)">68.4%</strong><span>of 1,101 local data center policy actions never mention water</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="view test" id="v-test">
-  <div class="wrap" id="testWrap">
+    <p class="lede">Two questions, one minute. See the gap between your AI habit and the data centers rising around you.</p>
+  <div class="testbox" id="testWrap">
     <div class="prog" aria-hidden="true"><i></i><i></i></div>
     <div class="step" data-s="1">
       <span class="k">Question 1 of 2</span>
@@ -249,6 +244,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
     <div class="ctas"><button class="btn sec" type="button" id="bBack">Back</button><button class="btn pri" type="button" id="bNext">Next</button></div>
   </div>
 
+  </div>
   <div class="result" id="result" hidden><div class="wrap">
     <div class="hero2">
       <div>
@@ -306,7 +302,27 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
       <div class="caveat"><b>How we count.</b> “New” means planned or under construction. Data center records: dcmap.us, October 2026 (5,098 U.S. records; 5,042 in the lower 48). <b>Water stress:</b> WRI Aqueduct 4.0 baseline water stress at each record’s location. “High” means 40–80% of the available water is withdrawn each year, “extremely high” more than 80%. Records with no WRI data (Alaska, Hawaii) are left out of shares. <b>Drought:</b> U.S. Drought Monitor, moderate drought or worse in more than 25% of weeks (2016–2025 and 2021–2025). <b>Policy:</b> Bommarito dataset, authors’ text analysis. <b>Your AI water:</b> prompts per day (midpoint of the range you picked; 75 for “50+”) × 365 × 0.26 mL, Google’s median for a Gemini text prompt, on-site cooling water only. “Counting electricity” adds 0.24 Wh per prompt × 4.52 L per kWh, the U.S. average from the LBNL report. <b>Your share:</b> LBNL’s 66 billion L (on site) and about 800 billion L (electricity) for 2023, divided by the 2023 U.S. population. <b>Limits.</b> A record counts once whatever its size or cooling system, so these shares show where sites are, not how much water each uses. Planned projects may never be built. Water stress is measured for the basin, not the facility’s actual water source. Company per-prompt figures are self-reported.</div>
     </div>
   </div></div>
+
+  <div class="deeper" id="deeper"><div class="wrap">
+    <span class="k">Go deeper · the data</span>
+    <h2>Why water, and why where?</h2>
+    <p class="lead">Data center water use is usually reported as one national number. But water runs out basin by basin. We mapped every U.S. data center record against water stress, ten years of drought and local rules. Each card opens that layer on the map.</p>
+    <div class="facts" style="margin-top:28px">
+      <div><strong>70.6%</strong><span>of planned or under-construction data centers sit in high water stress. Running ones: 69.8%</span></div>
+      <div><strong style="color:var(--both)">353</strong><span>of 1,585 new projects face high stress <i>and</i> frequent drought</span></div>
+      <div><strong style="color:var(--risk)">68.4%</strong><span>of 1,101 local data center policy actions never mention water</span></div>
+    </div>
+    <div class="chaps">
+      <a href="#map/where"><b>1 · Where they are</b><span>5,042 records in the lower 48, new and running</span><em>Open map →</em></a>
+      <a href="#map/stress"><b>2 · Water stress</b><span>7 in 10 new projects sit in stretched basins</span><em>Open map →</em></a>
+      <a href="#map/drought"><b>3 · Drought</b><span>522 weekly maps, 2016–2025</span><em>Open map →</em></a>
+      <a href="#map/dual"><b>4 · Double risk</b><span>Where stress and repeated drought overlap</span><em>Open map →</em></a>
+      <a href="#map/rules"><b>5 · The rules</b><span>How rarely local policy mentions water</span><em>Open map →</em></a>
+      <a href="#about"><b>About &amp; sources</b><span>How we counted, and the film behind this site</span><em>Read →</em></a>
+    </div>
+  </div></div>
 </section>
+
 
 <section class="view mapv" id="v-map">
   <div class="stage" id="stage">
@@ -401,10 +417,14 @@ function MapView(canvas,o={}){
     const r=Math.max(1.6,2.4/sc*Math.min(1,sc*1.4))*(o.dot||1);
     for(const p of P){ const st=M.pt(p); if(!st) continue;
       let a=alpha*st[1]; if(sel&&p[2]!==sel) a*=.25;
-      let rr=r; if(st[2]&&!reduce) rr=r*(1+.25*Math.sin(now/600+p[0]*.05));
+      let rr=r; if(st[2]&&!reduce){ pulse=true; rr=r*(1+.25*Math.sin(now/600+p[0]*.05)); }
       ctx.globalAlpha=a; ctx.fillStyle=st[0]; ctx.beginPath(); ctx.arc(p[0],p[1],rr,0,6.2832); ctx.fill(); }
   }
-  function draw(now){
+  let pulse=false, looping=false, last=0;
+  function tick(now){ if(!running||!(t<1||pulse)){ looping=false; return; }
+    if(t>=1&&now-last<66){ requestAnimationFrame(tick); return; } last=now; draw(now); requestAnimationFrame(tick); }
+  function kick(){ if(running&&!looping){ looping=true; requestAnimationFrame(tick); } }
+  function draw(now){ pulse=false;
     if(t<1) t=Math.min(1,t+(reduce?1:.06));
     ctx.setTransform(dpr,0,0,dpr,0,0); ctx.clearRect(0,0,W,H);
     ctx.setTransform(dpr*sc,0,0,dpr*sc,dpr*ox,dpr*oy);
@@ -414,29 +434,28 @@ function MapView(canvas,o={}){
     ctx.globalAlpha=1; ctx.lineWidth=.8/sc*1.2; ctx.strokeStyle="rgba(16,24,32,.85)"; ST.forEach((s,i)=>ctx.stroke(PATHS[i]));
     if(hov&&hov!==sel){ const i=ST.findIndex(s=>s.a===hov); ctx.lineWidth=1.6/sc; ctx.strokeStyle="rgba(241,244,245,.6)"; ctx.stroke(PATHS[i]); }
     if(sel){ const i=ST.findIndex(s=>s.a===sel); ctx.lineWidth=2.4/sc; ctx.strokeStyle="#F1F4F5"; ctx.stroke(PATHS[i]); }
-    if(running&&(!reduce||t<1)) requestAnimationFrame(draw);
   }
   function hit(x,y){ ctx.setTransform(1,0,0,1,0,0); const dx=(x-ox)/sc, dy=(y-oy)/sc; for(let i=0;i<ST.length;i++) if(ctx.isPointInPath(PATHS[i],dx,dy)) return ST[i].a; return null; }
   new ResizeObserver(()=>{ layout(); draw(performance.now()); }).observe(canvas);
   Object.values(IMG).forEach(im=>im.addEventListener("load",()=>{ if(!running) draw(performance.now()); }));
   return {
-    set(m){ if(m===mode) return; prev=mode; mode=m; t=0; if(!running) draw(performance.now()); },
-    win(w){ win=w; if(!running) draw(performance.now()); },
-    select(a){ sel=a; if(!running) draw(performance.now()); }, hover(a){ hov=a; },
-    start(){ if(running) return; running=true; layout(); requestAnimationFrame(draw); }, stop(){ running=false; },
+    set(m){ if(m===mode) return; prev=mode; mode=m; t=0; draw(performance.now()); kick(); },
+    win(w){ win=w; draw(performance.now()); kick(); },
+    select(a){ sel=a; draw(performance.now()); kick(); }, hover(a){ if(a===hov) return; hov=a; draw(performance.now()); },
+    start(){ if(running) return; running=true; layout(); draw(performance.now()); kick(); }, stop(){ running=false; },
     hit, redraw(){ draw(performance.now()); }
   };
 }
 
 // ---------- routing ----------
-const views={home:"v-home",test:"v-test",map:"v-map",about:"v-about"};
+const views={home:"v-home",map:"v-map",about:"v-about"};
 let art,map,mini,deep=null;
-function show(v){ v=v||""; const parts=v.split("/"); v=parts[0]; if(!views[v]) v="home";
+function show(v){ v=v||""; const parts=v.split("/"); v=parts[0]; if(v==="test") v="home"; if(!views[v]) v="home";
   if(v==="map"&&parts.length>1) deep=parts.slice(1);
   Object.entries(views).forEach(([k,id])=>document.getElementById(id).classList.toggle("on",k===v));
   document.querySelectorAll(".nav a").forEach(a=>{ if(a.dataset.v===v) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   v==="home"?art.start():art.stop(); v==="map"?map.start():map.stop();
-  if(v==="test"&&!document.getElementById("result").hidden) mini.start(); else mini.stop();
+  if(v==="home"&&!document.getElementById("result").hidden) mini.start(); else mini.stop();
   scrollTo(0,0);
   if(deep&&typeof applyDeep==="function"){ const d=deep; deep=null; applyDeep(d); }
 }
@@ -466,9 +485,10 @@ bBack.addEventListener("click",()=>{ if(S.step>1){S.step--;upd();} });
 upd();
 mini=MapView(document.getElementById("miniC"),{base:"#1A2630",dot:1.2});
 
+function heroOn(on){ document.getElementById("heroWrap").hidden=!on; document.getElementById("artWrap").style.display=on?"":"none"; document.getElementById("deeper").style.borderTop=on?"":"0"; }
 function result(){
   const a=S.state, n=NAME[a], t=T[a]||{}, ty=typeOf(a), TY=TYPES[ty];
-  document.getElementById("testWrap").hidden=true; document.getElementById("result").hidden=false; scrollTo(0,0);
+  heroOn(false); document.getElementById("result").hidden=false; scrollTo(0,0);
   document.getElementById("rType").innerHTML=`<small>${n}</small><span style="color:${TY.c}">${TY.n}</span>`;
   document.getElementById("rLine").textContent=TY.l(n)+(t.pipeline&&t.pipeline<10?` (Only ${t.pipeline} record${t.pipeline===1?"":"s"}, so read this with care.)`:"");
   mini.set(ty==="dry"?"dual":"stress"); mini.win("2016"); mini.select(a); mini.start();
@@ -509,7 +529,7 @@ function result(){
     document.getElementById("polbar").innerHTML=[["No mention",t.polNo,"#53636E"],["Mention only",t.polMention,"#91A5B1"],["Water standard",t.polExplicit,"#E5A064"]].filter(x=>x[1]>0).map(([l,v,col])=>`<div style="width:${pct(v,tot)}%;background:${col}" title="${l}: ${v}">${pct(v,tot)>=14?l+" "+v:v}</div>`).join("");
   } else { document.getElementById("pLead").innerHTML=`No local data center policy actions for ${n} in the dataset. U.S.: 68.4% of 1,101 never mention water.`; document.getElementById("polbar").innerHTML=""; }
 }
-document.getElementById("bRetake").addEventListener("click",()=>{ document.getElementById("result").hidden=true; document.getElementById("testWrap").hidden=false; mini.stop(); S.step=1; upd(); scrollTo(0,0); });
+document.getElementById("bRetake").addEventListener("click",()=>{ document.getElementById("result").hidden=true; heroOn(true); mini.stop(); S.step=1; upd(); scrollTo(0,0); });
 document.getElementById("bSeeMap").addEventListener("click",()=>{ pickState(S.state); setCh(1); go("map"); });
 
 // ---------- map view ----------
@@ -558,7 +578,7 @@ function card(a){ const el=document.getElementById("scard");
    <div class="r"><span>Local policy actions</span><span>${t.pol?fmt(t.pol):"0"}</span></div>
    <div class="r"><span>…with a water standard</span><span>${t.pol?fmt(t.polExplicit):"—"}</span></div>
    <button class="btn pri" type="button" id="cardGo">Check my gap in ${a}</button>`;
-  document.getElementById("cardGo").addEventListener("click",()=>{ S.state=a; qState.value=a; S.step=2; document.getElementById("result").hidden=true; document.getElementById("testWrap").hidden=false; upd(); go("test"); });
+  document.getElementById("cardGo").addEventListener("click",()=>{ S.state=a; qState.value=a; S.step=2; document.getElementById("result").hidden=true; heroOn(true); upd(); go("home"); });
 }
 function pickState(a){ selA=a; map.select(a); pick.value=a||""; card(a); }
 const mc=document.getElementById("mapC"), tip=document.getElementById("tip");
