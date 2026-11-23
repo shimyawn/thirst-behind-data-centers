@@ -260,7 +260,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
 
     <div class="sect">
       <span class="k">01 · The gap</span>
-      <h3>Your drop vs. their draw</h3>
+      <h3>Your AI use, in water</h3>
       <p class="lead" id="aiLead"></p>
       <div class="drops" id="drops" aria-hidden="true"></div>
       <div class="compare">
@@ -297,9 +297,9 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
 
     <div class="endnote">
       <span class="k">The takeaway</span>
-      <h3 style="margin-top:12px">Your prompts are a drop. <em>Where data centers are built</em> decides whose water is on the line.</h3>
-      <p>Seven in ten new data centers are planned in basins where 40% or more of the available water is already withdrawn, nearly the same share as the ones already running. More than one in five also sit where drought keeps coming back. Most local policy actions never mention water. The real question isn’t how much you type. It’s whether these places can sustain what’s coming.</p>
-      <div class="caveat"><b>How we count.</b> “New” means planned or under construction. Data center records: dcmap.us, October 2026 (5,098 U.S. records; 5,042 in the lower 48). <b>Water stress:</b> WRI Aqueduct 4.0 baseline water stress at each record’s location. “High” means 40–80% of the available water is withdrawn each year, “extremely high” more than 80%. Records with no WRI data (Alaska, Hawaii) are left out of shares. <b>Drought:</b> U.S. Drought Monitor, moderate drought or worse in more than 25% of weeks (2016–2025 and 2021–2025). <b>Policy:</b> Bommarito dataset, authors’ text analysis. <b>Your AI water:</b> prompts per day (midpoint of the range you picked; 75 for “50+”) × 365 × 0.26 mL, Google’s median for a Gemini text prompt, on-site cooling water only. “Counting electricity” adds 0.24 Wh per prompt × 4.52 L per kWh, the U.S. average from the LBNL report. <b>Your share:</b> LBNL’s 66 billion L (on site) and about 800 billion L (electricity) for 2023, divided by the 2023 U.S. population. <b>Limits.</b> A record counts once whatever its size or cooling system, so these shares show where sites are, not how much water each uses. Planned projects may never be built. Water stress is measured for the basin, not the facility’s actual water source. Company per-prompt figures are self-reported.</div>
+      <h3 style="margin-top:12px">Your prompts use little water. <em>Where data centers are built</em> matters more.</h3>
+      <p>Seven in ten new data centers are planned in basins where 40% or more of the available water is already withdrawn, nearly the same share as the ones already running. More than one in five also sit where drought keeps coming back. Most local policy actions never mention water.</p>
+      <div class="caveat"><b>How we count.</b> “New” means planned or under construction. Data center records: dcmap.us, October 2026 (5,098 U.S. records; 5,042 in the lower 48). <b>Water stress:</b> WRI Aqueduct 4.0 baseline water stress; each record takes the highest rating within 30 miles. “High” means 40–80% of the available water is withdrawn each year, “extremely high” more than 80%. Records with no WRI data (Alaska, Hawaii) are left out of shares. <b>Drought:</b> U.S. Drought Monitor, moderate drought or worse in more than 25% of weeks (2016–2025 and 2021–2025). <b>Policy:</b> Bommarito dataset. A record “mentions water” if its text contains the word; “water standard” records were coded by the authors. <b>Your AI water:</b> a typical value for the range you picked (3, 13, 35, 100, 500, 3,000 or 15,000 prompts a day) × 365 × 0.26 mL, Google’s median for a Gemini text prompt, on-site cooling water only. “Counting electricity” adds 0.24 Wh per prompt × 4.52 L per kWh, the U.S. average from the LBNL report. <b>Your share:</b> LBNL’s 66 billion L (on site) and about 800 billion L (electricity) for 2023, divided by the 2023 U.S. population. <b>Limits.</b> A record counts once whatever its size or cooling system, so these shares show where sites are, not how much water each uses. Planned projects may never be built. Water stress is measured for the basin, not the facility’s actual water source. Company per-prompt figures are self-reported. “Your share” divides the national total evenly by population; data centers also serve businesses and users abroad. The state labels use our own cut-offs: very high water pressure = at least half of new records face both stress and drought; high = at least 70% in high stress; some = at least 30%.</div>
     </div>
   </div></div>
 
@@ -381,7 +381,7 @@ const TYPES = {
   dry:{n:"Very high water pressure",c:"#E8AB9F",l:s=>`At least half of ${s}’s new data centers sit where water is highly stressed and drought keeps coming back.`},
   stressed:{n:"High water pressure",c:"#E5A064",l:s=>`Most of ${s}’s new data centers sit in basins where 40% or more of the available water is already withdrawn.`},
   watch:{n:"Some water pressure",c:"#AEDFEA",l:s=>`Part of ${s}’s new build-out sits in water-stressed basins.`},
-  lower:{n:"Low water pressure",c:"#91A5B1",l:s=>`Few of ${s}’s new data centers face high water stress. For now.`},
+  lower:{n:"Low water pressure",c:"#91A5B1",l:s=>`Few of ${s}’s new data centers face high water stress.`},
   quiet:{n:"No new data centers",c:"#53636E",l:s=>`No new data centers planned in ${s} in our data.`}
 };
 function typeOf(a){
