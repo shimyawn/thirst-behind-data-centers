@@ -201,7 +201,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
 .home .hero{padding-top:4vh}.home .hero h1{font-size:clamp(40px,5vw,68px)}.home .hero .lede{margin-top:12px}
 .testbox{margin-top:22px;max-width:600px;background:rgba(22,34,43,.88);border:1px solid var(--line);border-radius:16px;padding:26px 26px 24px;backdrop-filter:blur(6px)}
 .testbox .step h2{font-size:clamp(28px,3.6vw,40px)}
-.testbox .ctas{margin-top:24px}
+.testbox .ctas{margin-top:24px}.testbox .chips{grid-template-columns:repeat(4,1fr)}.testbox .chip{padding:12px}.testbox .chip b{font-size:18px;white-space:nowrap}.testbox .chip span{font-size:12px}@media (max-width:560px){.testbox .chips{grid-template-columns:repeat(2,1fr)}}
 .deeper{border-top:1px solid var(--line);background:var(--bg2,#16222B);position:relative;z-index:2}
 .deeper .wrap{padding-top:64px;padding-bottom:80px}
 .deeper h2{font-size:clamp(30px,4vw,48px);margin-top:10px}
@@ -238,7 +238,7 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
     <div class="step" data-s="2">
       <span class="k">Question 2 of 2</span>
       <h2 style="margin-top:10px">How many AI prompts a day?</h2>
-      <p class="hint">ChatGPT, Gemini, Claude, Copilot — home and work combined. A rough guess is fine.</p>
+      <p class="hint">ChatGPT, Gemini, Claude, Copilot — home and work combined. Count tools or agents that send prompts for you too. A rough guess is fine.</p>
       <div class="chips" role="group" aria-label="Chatbot questions per day" id="chatChips"></div>
     </div>
     <div class="ctas"><button class="btn sec" type="button" id="bBack">Back</button><button class="btn pri" type="button" id="bNext">Next</button></div>
@@ -378,11 +378,11 @@ const pct = (a, b) => b ? (a / b * 100) : 0;
 
 // ---------- state classification ----------
 const TYPES = {
-  dry:{n:"Dry frontier",c:"#E8AB9F",l:s=>`At least half of ${s}’s new data centers sit where water is highly stressed and drought keeps coming back.`},
-  stressed:{n:"Stressed hub",c:"#E5A064",l:s=>`Most of ${s}’s new data centers sit in basins where 40% or more of the available water is already withdrawn.`},
-  watch:{n:"On the watch list",c:"#AEDFEA",l:s=>`Part of ${s}’s new build-out sits in water-stressed basins.`},
-  lower:{n:"Lower pressure",c:"#91A5B1",l:s=>`Few of ${s}’s new data centers face high water stress. For now.`},
-  quiet:{n:"Quiet for now",c:"#53636E",l:s=>`No new data centers planned in ${s} in our data.`}
+  dry:{n:"Very high water pressure",c:"#E8AB9F",l:s=>`At least half of ${s}’s new data centers sit where water is highly stressed and drought keeps coming back.`},
+  stressed:{n:"High water pressure",c:"#E5A064",l:s=>`Most of ${s}’s new data centers sit in basins where 40% or more of the available water is already withdrawn.`},
+  watch:{n:"Some water pressure",c:"#AEDFEA",l:s=>`Part of ${s}’s new build-out sits in water-stressed basins.`},
+  lower:{n:"Low water pressure",c:"#91A5B1",l:s=>`Few of ${s}’s new data centers face high water stress. For now.`},
+  quiet:{n:"No new data centers",c:"#53636E",l:s=>`No new data centers planned in ${s} in our data.`}
 };
 function typeOf(a){
   const t=T[a]; if(!t||!t.pipeline) return "quiet";
@@ -471,7 +471,7 @@ const sorted=ST.slice().sort((a,b)=>a.n.localeCompare(b.n));
 const qState=document.getElementById("qState");
 qState.innerHTML='<option value="">Choose your state</option>'+sorted.map(s=>`<option value="${s.a}">${s.n}</option>`).join("");
 qState.addEventListener("change",()=>{S.state=qState.value;upd();});
-const CHAT=[[0,"0","never"],[3,"1–5","sometimes"],[13,"6–20","daily"],[35,"21–50","heavy"],[75,"50+","all day"]];
+const CHAT=[[0,"0","never"],[3,"1–5","a few"],[13,"6–20","every day"],[35,"21–50","a lot"],[100,"51–200","most of the day"],[500,"201–1,000","for work, nonstop"],[3000,"1,000–10,000","agents or apps"],[15000,"10,000+","running at scale"]];
 const cc=document.getElementById("chatChips");
 cc.innerHTML=CHAT.map(([v,b,s],i)=>`<button type="button" class="chip" data-i="${i}" aria-pressed="false"><b>${b}</b><span>${s}</span></button>`).join("");
 cc.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{ cc.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c)); S.chat=CHAT[+c.dataset.i][0]; upd(); }));
@@ -489,8 +489,16 @@ function heroOn(on){ document.getElementById("heroWrap").hidden=!on; document.ge
 function result(){
   const a=S.state, n=NAME[a], t=T[a]||{}, ty=typeOf(a), TY=TYPES[ty];
   heroOn(false); document.getElementById("result").hidden=false; scrollTo(0,0);
-  document.getElementById("rType").innerHTML=`<small>${n}</small><span style="color:${TY.c}">${TY.n}</span>`;
-  document.getElementById("rLine").textContent=TY.l(n)+(t.pipeline&&t.pipeline<10?` (Only ${t.pipeline} record${t.pipeline===1?"":"s"}, so read this with care.)`:"");
+  const AVG=5, x=S.chat/AVG;
+  const use = S.chat===0?{n:"No AI use",c:"var(--neu)"}: S.chat<=5?{n:"Light AI user",c:"var(--focus)"}: S.chat<=50?{n:"Above-average AI user",c:"var(--focus)"}: S.chat<=1000?{n:"Heavy AI user",c:"var(--risk)"}:{n:"Very heavy AI user",c:"var(--risk)"};
+  const press = ty==="dry"||ty==="stressed", heavy=S.chat>50;
+  const useTxt = S.chat===0?"You don’t use AI chatbots.": S.chat<=5?"You use AI a little, about as much as the average ChatGPT user or less.": `You send about ${fmt(S.chat)} prompts a day, about ${fmt(Math.round(x))} times the average ChatGPT user.`;
+  const placeTxt = ty==="quiet"? `${n} has no new data centers planned in our data.`
+    : press? `${n} is building many of its new data centers where water is already short.`
+    : `Fewer of ${n}’s new data centers are in places short on water.`;
+  const tieTxt = heavy&&!press&&ty!=="quiet" ? " But your prompts can be answered by data centers in any state, including dry ones." : "";
+  document.getElementById("rType").innerHTML=`<small>${n} · ${S.chat===0?"no prompts":fmt(S.chat)+" prompts a day"}</small><span style="display:block;font-size:.5em;color:${use.c}">You: ${use.n}</span><span style="display:block;font-size:.5em;color:${TY.c}">${n}: ${TY.n}</span>`;
+  document.getElementById("rLine").textContent=`${useTxt} ${placeTxt}${tieTxt}`+(t.pipeline&&t.pipeline<10?` (Only ${t.pipeline} new record${t.pipeline===1?"":"s"}, so read this with care.)`:"");
   mini.set(ty==="dry"?"dual":"stress"); mini.win("2016"); mini.select(a); mini.start();
   // Q1
   const pv=t.pipeline_wri_valid||0, ph=t.pipeline_high_plus||0, ov=t.operating_wri_valid||0, oh=t.operating_high_plus||0;
@@ -503,6 +511,8 @@ function result(){
     <div><span class="k" style="color:var(--sub)">Running, in high stress</span><strong>${ov?pct(oh,ov).toFixed(0)+"%":"—"}</strong><span>${fmt(oh)} of ${fmt(ov)} operating</span></div>`;
   const rk=Object.entries(T).filter(([k,v])=>v.pipeline>0&&NAME[k]).sort((x,y)=>(y[1].pipeline_high_plus||0)-(x[1].pipeline_high_plus||0));
   const mx=rk[0][1].pipeline_high_plus||1, pos=rk.findIndex(([k])=>k===a)+1;
+  const rkN=Object.entries(T).filter(([k,v])=>v.pipeline>0&&NAME[k]).sort((x,y)=>(y[1].pipeline||0)-(x[1].pipeline||0)), posN=rkN.findIndex(([k])=>k===a)+1;
+  document.getElementById("sLead").innerHTML += pos? ` <br><b>Rank:</b> #${posN} of ${rkN.length} states for new data centers, #${pos} for new data centers where water is short.` : "";
   document.getElementById("rank").innerHTML=rk.map(([k,v])=>`<i class="${k===a?"me":""}" style="height:${Math.max(1.5,(v.pipeline_high_plus||0)/mx*100).toFixed(1)}%" data-l="${k===a?k+" #"+pos:""}"></i>`).join("");
   // Q2
   const L=S.chat*365*0.26/1000;
@@ -514,9 +524,9 @@ function result(){
     : `You don’t use AI chatbots. Data centers still draw water on your behalf: for search, streaming, cloud storage and everyone else’s prompts.`;
   document.getElementById("aiYouSub").textContent = S.chat ? `on-site water to answer them. About ${lit(Le)} counting the water behind the electricity.` : `no prompts, no prompt water`;
   document.getElementById("gapX").innerHTML = S.chat
-    ? `Your prompts explain about <b>1/${fmt(Math.round(SHARE/L))}</b> of your share. The rest is everything else data centers run.`
+    ? (L>=SHARE ? `Your prompts alone use <b>${(L/SHARE).toFixed(1)} times</b> your share of all U.S. data center water.` : `Your prompts are about <b>${(L/SHARE*100<1?(L/SHARE*100).toFixed(1):Math.round(L/SHARE*100))}%</b> of your share. The rest is everything else data centers run for you.`)
     : `Zero prompts. Your share is still <b>197 L</b> a year.`;
-  document.getElementById("aiNote").innerHTML = `Per-prompt water is Google’s own median for Gemini text prompts (0.26 mL), not independently verified; OpenAI’s CEO has cited about 0.32 mL. Images and video are not included. Counting model training and hardware, Mistral’s life-cycle audit puts one reply at 45 mL${S.chat?`, which would be about ${lit(Lm)} a year at your pace`:``}. National figures: Lawrence Berkeley National Laboratory, 2023.`;
+  document.getElementById("aiNote").innerHTML = `Average user: about 5 prompts a day (2.5 billion ChatGPT prompts a day ÷ about 500 million weekly users, OpenAI via Axios, July 2025). Per-prompt water is Google’s own median for Gemini text prompts (0.26 mL), not independently verified; OpenAI’s CEO has cited about 0.32 mL. Images and video are not included. Counting model training and hardware, Mistral’s life-cycle audit puts one reply at 45 mL${S.chat?`, which would be about ${lit(Lm)} a year at your pace`:``}. National figures: Lawrence Berkeley National Laboratory, 2023.`;
   // Q3
   const c=t.complete||0, d16=t.d2016||0, d21=t.d2021||0;
   document.getElementById("dTitle").textContent=`Stress + drought in ${n}`;
