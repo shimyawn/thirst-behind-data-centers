@@ -214,18 +214,18 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
     <p class="lede">Tell us where you live and how much you use AI. We’ll show the gap between your drop and the data centers rising around you.</p>
     <div class="doors">
       <button class="door" type="button" data-go="test"><b>Check my gap</b><span>Your state + your AI habit. Two taps.</span><em>Start · 1 min →</em></button>
-      <button class="door r" type="button" data-go="map"><b>See the whole map</b><span>5,042 data centers over water stress, drought and rules.</span><em>Explore →</em></button>
+      <button class="door r" type="button" data-go="map"><b>See the whole map</b><span>5,042 data center records over water stress, drought and rules.</span><em>Explore →</em></button>
     </div>
     <div class="qs" aria-label="Questions this site answers">
-      <button class="q" type="button" data-go="test"><b>01</b>Is my state building where water is scarce?</button>
+      <button class="q" type="button" data-go="test"><b>01</b>Is my state building where water is already stretched?</button>
       <button class="q" type="button" data-go="test"><b>02</b>How much water does my AI habit use?</button>
       <button class="q" type="button" data-go="map"><b>03</b>Where do water stress and drought overlap?</button>
       <button class="q" type="button" data-go="map"><b>04</b>Do local rules protect water?</button>
     </div>
     <div class="facts">
-      <div><strong>70.6%</strong><span>of new data centers sit in water-stressed basins</span></div>
-      <div><strong style="color:var(--both)">353</strong><span>new projects face stress <i>and</i> drought</span></div>
-      <div><strong style="color:var(--risk)">68.4%</strong><span>of local data center rules never mention water</span></div>
+      <div><strong>70.6%</strong><span>of planned or under-construction data centers sit in high water stress. Running ones: 69.8%</span></div>
+      <div><strong style="color:var(--both)">353</strong><span>of 1,585 new projects face high stress <i>and</i> frequent drought</span></div>
+      <div><strong style="color:var(--risk)">68.4%</strong><span>of 1,101 local data center policy actions never mention water</span></div>
     </div>
   </div>
 </section>
@@ -268,20 +268,21 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
       <p class="lead" id="aiLead"></p>
       <div class="drops" id="drops" aria-hidden="true"></div>
       <div class="compare">
-        <div><span class="k" style="color:var(--focus)">You, one year</span><strong id="aiYou"></strong><span>water to answer your prompts</span></div>
-        <div><span class="k" style="color:var(--risk)">All U.S. data centers, one year</span><strong>66 billion L</strong><span>on site (2023), plus ~800 billion L to make their power</span></div>
+        <div><span class="k" style="color:var(--focus)">Your prompts, one year</span><strong id="aiYou"></strong><span id="aiYouSub"></span></div>
+        <div><span class="k" style="color:var(--risk)">Your share of all U.S. data centers</span><strong>197 L</strong><span>on-site water per person, per year (66 billion L ÷ 334.9 million people, 2023). About 2,400 L counting the water behind their electricity.</span></div>
       </div>
       <p class="gapx" id="gapX"></p>
+      <p class="src" id="aiNote" style="margin-top:14px;max-width:80ch"></p>
     </div>
 
     <div class="sect">
       <span class="k">02 · Your state</span>
-      <h3>Building where water is scarce?</h3>
+      <h3>Building where water is already stretched?</h3>
       <p class="lead" id="sLead"></p>
       <div class="big3" id="big3"></div>
       <div class="rank" id="rank" aria-hidden="true"></div>
       <div class="rankx"><span>most new projects in high stress</span><span>fewest</span></div>
-      <p class="src" style="margin-top:10px">Each bar is one state, ranked by planned or under-construction data centers in high or extremely high water stress (WRI Aqueduct 4.0).</p>
+      <p class="src" style="margin-top:10px">Each bar is one state, ranked by the number of planned or under-construction data centers in high or extremely high water stress (WRI Aqueduct 4.0: 40% or more of the available water is already withdrawn each year).</p>
     </div>
 
     <div class="sect">
@@ -295,14 +296,14 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
       <h3>Do local rules mention water?</h3>
       <p class="lead" id="pLead"></p>
       <div class="polbar" id="polbar"></div>
-      <p class="src" style="margin-top:10px">Bommarito moratorium dataset. One record is one policy action, not one active ban.</p>
+      <p class="src" style="margin-top:10px">Bommarito moratorium dataset. One record is one local policy action (proposed, active or ended), not one active ban.</p>
     </div>
 
     <div class="endnote">
       <span class="k">The takeaway</span>
-      <h3 style="margin-top:12px">Your prompts are a drop. <em>Where data centers are built</em> decides who goes dry.</h3>
-      <p>New data centers are clustering in basins that already use most of their water, and where drought keeps coming back. Most local rules never mention water. The real question isn’t how much you type. It’s whether these places can sustain what’s coming.</p>
-      <div class="caveat"><b>How we count.</b> “New” means planned or under construction. Data center records: dcmap.us, October 2026 (operating, under construction, planned). Water stress: WRI Aqueduct 4.0 baseline water stress at each record’s location; records with no WRI data are excluded from shares. Drought: U.S. Drought Monitor, moderate drought or worse in more than 25% of weeks (2016–2025 and 2021–2025). Policy: Bommarito dataset, authors’ text analysis. Your AI water: 0.26 mL per text prompt, Google’s published median for Gemini, on-site water only. All state figures come from the team’s production ledger.</div>
+      <h3 style="margin-top:12px">Your prompts are a drop. <em>Where data centers are built</em> decides whose water is on the line.</h3>
+      <p>Seven in ten new data centers are planned in basins where 40% or more of the available water is already withdrawn, nearly the same share as the ones already running. More than one in five also sit where drought keeps coming back. Most local policy actions never mention water. The real question isn’t how much you type. It’s whether these places can sustain what’s coming.</p>
+      <div class="caveat"><b>How we count.</b> “New” means planned or under construction. Data center records: dcmap.us, October 2026 (5,098 U.S. records; 5,042 in the lower 48). <b>Water stress:</b> WRI Aqueduct 4.0 baseline water stress at each record’s location. “High” means 40–80% of the available water is withdrawn each year, “extremely high” more than 80%. Records with no WRI data (Alaska, Hawaii) are left out of shares. <b>Drought:</b> U.S. Drought Monitor, moderate drought or worse in more than 25% of weeks (2016–2025 and 2021–2025). <b>Policy:</b> Bommarito dataset, authors’ text analysis. <b>Your AI water:</b> prompts per day (midpoint of the range you picked; 75 for “50+”) × 365 × 0.26 mL, Google’s median for a Gemini text prompt, on-site cooling water only. “Counting electricity” adds 0.24 Wh per prompt × 4.52 L per kWh, the U.S. average from the LBNL report. <b>Your share:</b> LBNL’s 66 billion L (on site) and about 800 billion L (electricity) for 2023, divided by the 2023 U.S. population. <b>Limits.</b> A record counts once whatever its size or cooling system, so these shares show where sites are, not how much water each uses. Planned projects may never be built. Water stress is measured for the basin, not the facility’s actual water source. Company per-prompt figures are self-reported.</div>
     </div>
   </div></div>
 </section>
@@ -327,14 +328,14 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
   <span class="k">About</span>
   <h2 style="margin-top:12px">Why we made this</h2>
   <div class="intro" style="margin-top:20px">
-    <p>National totals say U.S. data centers used 66 billion liters of water on site in 2023. That number hides the question that matters to the people living next to them: whose water, and how much is left?</p>
+    <p>National estimates say U.S. data centers consumed 66 billion liters of water on site in 2023. That number hides the question that matters to the people living next to them: whose water, and how much is left?</p>
     <p>Thirst Check is the interactive companion to our short film, <i>The Thirst Behind the Data Center Boom</i>. It starts from the state you live in, then zooms out to the whole country, so the same data can answer a personal question and show the national pattern.</p>
     <p>We began with the United States because its data is public and detailed: facility records, basin-level water stress, ten years of weekly drought maps and local policy records. As comparable data becomes available for other countries, the same test and map can grow with it.</p>
   </div>
   <div class="pnc">
     <div><span class="k">Problem</span><h3>Water is local</h3><p>Data center water use is reported as national totals, but scarcity is felt basin by basin.</p></div>
     <div><span class="k" style="color:var(--both)">Approach</span><h3>Overlay the places</h3><p>Map every record against water stress and a decade of drought, then read local rules for water.</p></div>
-    <div><span class="k" style="color:var(--risk)">Position</span><h3>Ask what places can sustain</h3><p>Growth is concentrating in stressed basins while most rules stay silent on water.</p></div>
+    <div><span class="k" style="color:var(--risk)">Position</span><h3>Ask what places can sustain</h3><p>Seven in ten sites, old and new, sit in stressed basins while most policy actions stay silent on water.</p></div>
   </div>
   <h3 style="font-size:24px;margin-bottom:14px">Sources</h3>
   <ol>
@@ -343,7 +344,9 @@ h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.015em;line-height:1.05;text-w
     <li>NOAA NCEI / National Drought Mitigation Center, <a href="https://droughtmonitor.unl.edu/">U.S. Drought Monitor</a>, 522 weekly maps, 2016–2025.</li>
     <li>Bommarito, <a href="https://github.com/mjbommar/moratorium-data-2026/tree/v2026.11.11.post13">moratorium-data-2026</a>, v2026.11.11 (CC BY 4.0); authors’ text analysis.</li>
     <li>Lawrence Berkeley National Laboratory, <a href="https://escholarship.org/uc/item/32d6m0d1">2024 U.S. Data Center Energy Usage Report</a>.</li>
-    <li>Google, <a href="https://arxiv.org/html/2508.15734v1">Measuring the environmental impact of delivering AI at Google scale</a> (0.26 mL water per median text prompt).</li>
+    <li>Google, <a href="https://arxiv.org/html/2508.15734v1">Measuring the environmental impact of delivering AI at Google scale</a>, 2025 (0.26 mL on-site water and 0.24 Wh per median Gemini text prompt; self-reported).</li>
+    <li>Mistral AI, <a href="https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai">life-cycle analysis of Mistral Large 2</a>, 2025 (45 mL per 400-token reply, including training and hardware).</li>
+    <li>U.S. Census Bureau, <a href="https://www.census.gov/newsroom/press-releases/2023/population-trends-return-to-pre-pandemic-norms.html">Vintage 2023 population estimates</a> (334,914,895 residents, July 1, 2023).</li>
     <li>Natural Earth; U.S. Census Bureau via us-atlas (boundaries). Authors’ spatial analysis.</li>
   </ol>
 </div></section>
@@ -359,8 +362,8 @@ const pct = (a, b) => b ? (a / b * 100) : 0;
 
 // ---------- state classification ----------
 const TYPES = {
-  dry:{n:"Dry frontier",c:"#E8AB9F",l:s=>`${s} is building where water is short and drought keeps coming back.`},
-  stressed:{n:"Stressed hub",c:"#E5A064",l:s=>`${s} is building in basins already using most of their water.`},
+  dry:{n:"Dry frontier",c:"#E8AB9F",l:s=>`At least half of ${s}’s new data centers sit where water is highly stressed and drought keeps coming back.`},
+  stressed:{n:"Stressed hub",c:"#E5A064",l:s=>`Most of ${s}’s new data centers sit in basins where 40% or more of the available water is already withdrawn.`},
   watch:{n:"On the watch list",c:"#AEDFEA",l:s=>`Part of ${s}’s new build-out sits in water-stressed basins.`},
   lower:{n:"Lower pressure",c:"#91A5B1",l:s=>`Few of ${s}’s new data centers face high water stress. For now.`},
   quiet:{n:"Quiet for now",c:"#53636E",l:s=>`No new data centers planned in ${s} in our data.`}
@@ -447,7 +450,7 @@ const sorted=ST.slice().sort((a,b)=>a.n.localeCompare(b.n));
 const qState=document.getElementById("qState");
 qState.innerHTML='<option value="">Choose your state</option>'+sorted.map(s=>`<option value="${s.a}">${s.n}</option>`).join("");
 qState.addEventListener("change",()=>{S.state=qState.value;upd();});
-const CHAT=[[0,"0","never"],[3,"1–5","sometimes"],[12,"6–20","daily"],[35,"21–50","heavy"],[75,"50+","all day"]];
+const CHAT=[[0,"0","never"],[3,"1–5","sometimes"],[13,"6–20","daily"],[35,"21–50","heavy"],[75,"50+","all day"]];
 const cc=document.getElementById("chatChips");
 cc.innerHTML=CHAT.map(([v,b,s],i)=>`<button type="button" class="chip" data-i="${i}" aria-pressed="false"><b>${b}</b><span>${s}</span></button>`).join("");
 cc.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{ cc.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c)); S.chat=CHAT[+c.dataset.i][0]; upd(); }));
@@ -465,15 +468,15 @@ function result(){
   const a=S.state, n=NAME[a], t=T[a]||{}, ty=typeOf(a), TY=TYPES[ty];
   document.getElementById("testWrap").hidden=true; document.getElementById("result").hidden=false; scrollTo(0,0);
   document.getElementById("rType").innerHTML=`<small>${n}</small><span style="color:${TY.c}">${TY.n}</span>`;
-  document.getElementById("rLine").textContent=TY.l(n)+(t.pipeline&&t.pipeline<5?" (Few records, so read this with care.)":"");
+  document.getElementById("rLine").textContent=TY.l(n)+(t.pipeline&&t.pipeline<10?` (Only ${t.pipeline} record${t.pipeline===1?"":"s"}, so read this with care.)`:"");
   mini.set(ty==="dry"?"dual":"stress"); mini.win("2016"); mini.select(a); mini.start();
   // Q1
   const pv=t.pipeline_wri_valid||0, ph=t.pipeline_high_plus||0, ov=t.operating_wri_valid||0, oh=t.operating_high_plus||0;
   document.getElementById("sLead").innerHTML = t.pipeline
-    ? `${n} has <b>${fmt(t.pipeline)}</b> new data centers planned or being built. <b>${pct(ph,pv).toFixed(0)}%</b> of them (${fmt(ph)} of ${fmt(pv)} with data) sit in high water stress. U.S. average: 70.6%.`
+    ? `${n} has <b>${fmt(t.pipeline)}</b> new data centers planned or being built. <b>${pct(ph,pv).toFixed(0)}%</b> of them (${fmt(ph)} of ${fmt(pv)} with data) sit in high water stress. U.S.: 70.6%.`
     : `${n} has ${fmt(t.records||0)} data centers, but none planned or being built in our data.`;
   document.getElementById("big3").innerHTML=`
-    <div><span class="k" style="color:var(--sub)">All data centers</span><strong>${fmt(t.records||0)}</strong><span>operating, planned and under construction</span></div>
+    <div><span class="k" style="color:var(--sub)">All records</span><strong>${fmt(t.records||0)}</strong><span>running, planned, under construction and paused</span></div>
     <div><span class="k" style="color:var(--risk)">New, in high stress</span><strong style="color:var(--risk)">${pv?pct(ph,pv).toFixed(0)+"%":"—"}</strong><span>${fmt(ph)} of ${fmt(pv)} planned or being built</span></div>
     <div><span class="k" style="color:var(--sub)">Running, in high stress</span><strong>${ov?pct(oh,ov).toFixed(0)+"%":"—"}</strong><span>${fmt(oh)} of ${fmt(ov)} operating</span></div>`;
   const rk=Object.entries(T).filter(([k,v])=>v.pipeline>0&&NAME[k]).sort((x,y)=>(y[1].pipeline_high_plus||0)-(x[1].pipeline_high_plus||0));
@@ -482,15 +485,16 @@ function result(){
   // Q2
   const L=S.chat*365*0.26/1000;
   document.getElementById("aiYou").textContent = S.chat? (L<1? Math.round(L*1000)+" mL" : L.toFixed(1)+" L") : "0 L";
-  const gl=Math.max(1,Math.round(L/0.25));
+  const POP=334914895, SHARE=66e9/POP, lit=v=>v<1?Math.round(v*1000)+" mL":v<10?v.toFixed(1)+" L":fmt(Math.round(v))+" L";
+  const Le=S.chat*365*(0.26+0.24*4.52)/1000, Lm=S.chat*365*45/1000, gl=Math.max(1,Math.round(L/0.25));
   document.getElementById("aiLead").innerHTML = S.chat
-    ? `About ${S.chat} prompts a day ≈ <b>${L<1?Math.round(L*1000)+" mL":L.toFixed(1)+" liters"}</b> of water a year. That’s ${gl} glass${gl===1?"":"es"}. Each drop below is one.`
-    : `You don’t use AI chatbots. The build-out still draws on the water around you.`;
-  const yrs=S.chat?66e9/L:0, big=v=>v>=1e9?(v/1e9).toFixed(v>=1e10?0:1)+" billion":v>=1e6?(v/1e6).toFixed(0)+" million":fmt(Math.round(v));
+    ? `About ${S.chat} text prompts a day ≈ <b>${lit(L)}</b> of cooling water a year. That’s ${gl} glass${gl===1?"":"es"}. Each drop below is one.`
+    : `You don’t use AI chatbots. Data centers still draw water on your behalf: for search, streaming, cloud storage and everyone else’s prompts.`;
+  document.getElementById("aiYouSub").textContent = S.chat ? `on-site water to answer them. About ${lit(Le)} counting the water behind the electricity.` : `no prompts, no prompt water`;
   document.getElementById("gapX").innerHTML = S.chat
-    ? `At your pace, it would take <b>${big(yrs)} years</b> to use what U.S. data centers use in one.`
-    : `Your share is zero. Theirs is <b>66 billion liters</b> a year.`;
-  document.getElementById("drops").innerHTML=Array.from({length:Math.min(60,Math.round(L/0.25))},()=>"<i></i>").join("");
+    ? `Your prompts explain about <b>1/${fmt(Math.round(SHARE/L))}</b> of your share. The rest is everything else data centers run.`
+    : `Zero prompts. Your share is still <b>197 L</b> a year.`;
+  document.getElementById("aiNote").innerHTML = `Per-prompt water is Google’s own median for Gemini text prompts (0.26 mL), not independently verified; OpenAI’s CEO has cited about 0.32 mL. Images and video are not included. Counting model training and hardware, Mistral’s life-cycle audit puts one reply at 45 mL${S.chat?`, which would be about ${lit(Lm)} a year at your pace`:``}. National figures: Lawrence Berkeley National Laboratory, 2023.`;
   // Q3
   const c=t.complete||0, d16=t.d2016||0, d21=t.d2021||0;
   document.getElementById("dTitle").textContent=`Stress + drought in ${n}`;
@@ -499,24 +503,24 @@ function result(){
     : `No new projects with complete data here. U.S.: 353 of 1,585 face both.`;
   // Q4
   if(t.pol){ const tot=t.pol;
-    document.getElementById("pLead").innerHTML=`${n} has <b>${fmt(tot)}</b> local data center rule${tot===1?"":"s"}. <b>${fmt(t.polNo)}</b> never mention water. <b>${fmt(t.polExplicit)}</b> set a water limit. U.S.: 68.4% silent, 8.9% set a limit.`;
+    document.getElementById("pLead").innerHTML=`${n} has <b>${fmt(tot)}</b> local data center policy action${tot===1?"":"s"} on record. <b>${fmt(t.polNo)}</b> never mention water. <b>${fmt(t.polExplicit)}</b> set${t.polExplicit===1?"s":""} an explicit water standard. U.S.: 68.4% silent, 8.9% with a standard.`;
     document.getElementById("polbar").innerHTML=[["No mention",t.polNo,"#53636E"],["Mention only",t.polMention,"#91A5B1"],["Water standard",t.polExplicit,"#E5A064"]].filter(x=>x[1]>0).map(([l,v,col])=>`<div style="width:${pct(v,tot)}%;background:${col}" title="${l}: ${v}">${pct(v,tot)>=14?l+" "+v:v}</div>`).join("");
-  } else { document.getElementById("pLead").innerHTML=`No local data center rules for ${n} in the dataset. U.S.: 68.4% of 1,101 never mention water.`; document.getElementById("polbar").innerHTML=""; }
+  } else { document.getElementById("pLead").innerHTML=`No local data center policy actions for ${n} in the dataset. U.S.: 68.4% of 1,101 never mention water.`; document.getElementById("polbar").innerHTML=""; }
 }
 document.getElementById("bRetake").addEventListener("click",()=>{ document.getElementById("result").hidden=true; document.getElementById("testWrap").hidden=false; mini.stop(); S.step=1; upd(); scrollTo(0,0); });
 document.getElementById("bSeeMap").addEventListener("click",()=>{ pickState(S.state); setCh(1); go("map"); });
 
 // ---------- map view ----------
 const CH=[
- {m:"where",k:"1 · Where they are",h:"5,042 data centers",p:"Every one in the lower 48. Bright = planned or being built. Dim = running.",sb:"1,599",ss:"planned or being built nationwide (Oct 2026)",src:"dcmap.us, Oct 2026 · contiguous U.S. shown; totals include all U.S. records",
+ {m:"where",k:"1 · Where they are",h:"5,042 data center records",p:"Every record in the lower 48. Bright = planned or being built (1,589). Dim = running (3,128). Faint = paused or inactive (325).",sb:"1,599",ss:"planned or being built nationwide, including Alaska and Hawaii (Oct 2026)",src:"dcmap.us, Oct 2026 · contiguous U.S. shown; totals include all U.S. records",
   lg:[["#AEDFEA","Planned / under construction"],["#53636E","Operating"],["#3B4A54","Paused / inactive"]]},
- {m:"stress",k:"2 · Water stress",h:"7 in 10 go where water is scarce",p:"Basins shaded by how much of their water is already used. Orange = new projects in high stress.",sb:"70.6%",ss:"of new projects (1,122 of 1,589 with data)",src:"dcmap.us; WRI Aqueduct 4.0; authors’ analysis",
+ {m:"stress",k:"2 · Water stress",h:"7 in 10 go where water is already stretched",p:"Basins shaded by how much of their available water is withdrawn each year. High stress = 40% or more. Orange = new projects there.",sb:"70.6%",ss:"of new projects (1,122 of 1,589). Running sites are at 69.8% (2,183 of 3,128), so the pattern is not new. It is being repeated.",src:"dcmap.us; WRI Aqueduct 4.0; authors’ analysis",
   lg:[["#E5A064","New project, high stress"],["#91A5B1","New project, lower stress"],["#22406A","Extremely high basin",1],["#3F6E9C","High",1],["#9DC4DA","Low–medium",1],["#A89F92","Arid, low use",1],["#4A4A4A","No data",1]]},
- {m:"drought",k:"3 · Drought",h:"Ten years of dry weeks",p:"How often each place was in drought, across 522 weekly maps. Darker = more often.",sb:"522",ss:"weekly maps, 2016–2025; we flag places above 25% of weeks",src:"U.S. Drought Monitor, 2016–2025; frequency, not intensity",
+ {m:"drought",k:"3 · Drought",h:"Ten years of dry weeks",p:"How often each place was in moderate drought or worse, across 522 weekly maps. Darker = more often.",sb:"522",ss:"weekly maps, 2016–2025; we flag places above 25% of weeks",src:"U.S. Drought Monitor, 2016–2025; frequency, not intensity",
   lg:[["#F2E6A6","Rarely",1],["#E8C170","",1],["#D98B4A","",1],["#BA6045","",1],["#7A2E2E","Most weeks",1]]},
  {m:"dual",k:"4 · Double risk",h:"Where both hit",p:"Pink = high water stress + drought in over a quarter of weeks. White dots = new projects inside.",sb:"353",ss:"of 1,585 new projects (22.3%) face both, 2016–25. Nearly two-thirds are in Texas, Arizona and California.",src:"WRI Aqueduct 4.0; U.S. Drought Monitor; authors’ spatial analysis",win:true,
   lg:[["#E8AB9F","Stress + drought",1],["#2E5480","Stress only",1],["#F1F4F5","New project facing both"]]},
- {m:"rules",k:"5 · The rules",h:"Rules pause. Few protect water.",p:"States by number of local data center rules. Warmer = 10%+ set a water limit.",sb:"68.4%",ss:"of 1,101 rules never mention water; 8.9% set a limit",src:"Bommarito moratorium dataset v2026.11.11; authors’ text analysis",
+ {m:"rules",k:"5 · The rules",h:"Rules pause. Few protect water.",p:"States by number of local data center policy actions. Warmer = 10%+ set an explicit water standard.",sb:"68.4%",ss:"of 1,101 policy actions never mention water (753); 8.9% set a water standard (98)",src:"Bommarito moratorium dataset v2026.11.11; authors’ text analysis",
   lg:[["#3E4E59","40+ records",1],["#7A5B3D","40+ records, 10%+ with water standards",1],["#2F3C45","10–39 records",1],["#232F38","Fewer than 10",1]]}
 ];
 let ci=0, selA=null;
@@ -544,13 +548,13 @@ function card(a){ const el=document.getElementById("scard");
   if(!a){ el.innerHTML=`<span class="k">State card</span><h3>Pick a state</h3><p style="margin:0;color:var(--sub);font-size:14px">Tap or click a state on the map, or choose one from the list.</p>`; return; }
   const t=T[a]||{}, ty=TYPES[typeOf(a)], pv=t.pipeline_wri_valid||0;
   el.innerHTML=`<span class="type" style="background:${ty.c};color:#101820">${ty.n}</span><h3>${NAME[a]}</h3>
-   <div class="r"><span>All data centers</span><span>${fmt(t.records||0)}</span></div>
+   <div class="r"><span>All records</span><span>${fmt(t.records||0)}</span></div>
    <div class="r"><span>New (planned + being built)</span><span>${fmt(t.pipeline||0)}</span></div>
    <div class="r"><span>…in high water stress</span><span>${pv?fmt(t.pipeline_high_plus)+" ("+pct(t.pipeline_high_plus,pv).toFixed(0)+"%)":"—"}</span></div>
    <div class="r"><span>Stress + drought, 2016–25</span><span>${t.complete?fmt(t.d2016||0):"—"}</span></div>
    <div class="r"><span>Stress + drought, 2021–25</span><span>${t.complete?fmt(t.d2021||0):"—"}</span></div>
-   <div class="r"><span>Local rules</span><span>${t.pol?fmt(t.pol):"0"}</span></div>
-   <div class="r"><span>…with a water limit</span><span>${t.pol?fmt(t.polExplicit):"—"}</span></div>
+   <div class="r"><span>Local policy actions</span><span>${t.pol?fmt(t.pol):"0"}</span></div>
+   <div class="r"><span>…with a water standard</span><span>${t.pol?fmt(t.polExplicit):"—"}</span></div>
    <button class="btn pri" type="button" id="cardGo">Check my gap in ${a}</button>`;
   document.getElementById("cardGo").addEventListener("click",()=>{ S.state=a; qState.value=a; S.step=2; document.getElementById("result").hidden=true; document.getElementById("testWrap").hidden=false; upd(); go("test"); });
 }
