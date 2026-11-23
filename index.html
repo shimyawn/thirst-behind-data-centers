@@ -430,13 +430,15 @@ function MapView(canvas,o={}){
 
 // ---------- routing ----------
 const views={home:"v-home",test:"v-test",map:"v-map",about:"v-about"};
-let art,map,mini;
-function show(v){ if(!views[v]) v="home";
+let art,map,mini,deep=null;
+function show(v){ v=v||""; const parts=v.split("/"); v=parts[0]; if(!views[v]) v="home";
+  if(v==="map"&&parts.length>1) deep=parts.slice(1);
   Object.entries(views).forEach(([k,id])=>document.getElementById(id).classList.toggle("on",k===v));
   document.querySelectorAll(".nav a").forEach(a=>{ if(a.dataset.v===v) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   v==="home"?art.start():art.stop(); v==="map"?map.start():map.stop();
   if(v==="test"&&!document.getElementById("result").hidden) mini.start(); else mini.stop();
   scrollTo(0,0);
+  if(deep&&typeof applyDeep==="function"){ const d=deep; deep=null; applyDeep(d); }
 }
 const go=v=>{ if(location.hash!=="#"+v) location.hash=v; else show(v); };
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>go(b.dataset.go)));
@@ -533,7 +535,7 @@ let winSel="2016";
 function setCh(i){ ci=(i+CH.length)%CH.length; const c=CH[ci]; map.set(c.m);
   lb.querySelectorAll("button").forEach((b,j)=>b.setAttribute("aria-pressed",j===ci));
   document.querySelectorAll("#cDots i").forEach((d,j)=>d.classList.toggle("on",j===ci));
-  const sb=c.win&&winSel==="2021"?"612":c.sb, ss=c.win&&winSel==="2021"?"of 1,585 new projects (38.6%) face both, counting 2021–25 only.":c.ss;
+  const sb=c.win&&winSel==="2021"?"612":c.sb, ss=c.win&&winSel==="2021"?"of 1,585 new projects (38.6%) face both, counting 2021–25 only. Same sites. Only the window changed.":c.ss;
   document.getElementById("chapter").innerHTML=`<span class="k">${c.k}</span><h2>${c.h}</h2><p>${c.p}</p><div class="stat"><b style="color:${c.m==="dual"?"var(--both)":c.m==="stress"||c.m==="rules"?"var(--risk)":"var(--text)"}">${sb}</b><span>${ss}</span></div>${c.win?`<div class="wtog" role="group" aria-label="Drought window"><button type="button" data-w="2016" aria-pressed="${winSel==="2016"}">2016–2025</button><button type="button" data-w="2021" aria-pressed="${winSel==="2021"}">2021–2025</button></div>`:""}`;
   document.querySelectorAll(".wtog button").forEach(b=>b.addEventListener("click",()=>{ winSel=b.dataset.w; map.win(winSel); setCh(ci); }));
   document.getElementById("mlegend").innerHTML=c.lg.map(([col,t,sq])=>`<span><i class="${sq?"sq":""}" style="background:${col}"></i>${t}</span>`).join("");
@@ -566,6 +568,13 @@ mc.addEventListener("pointermove",e=>{ if(e.pointerType!=="mouse")return; const 
 mc.addEventListener("pointerleave",()=>{ map.hover(null); tip.style.opacity=0; });
 mc.addEventListener("click",e=>{ const [x,y]=rel(e), a=map.hit(x,y); pickState(a===selA?null:a);
   if(a&&innerWidth<860) document.getElementById("scard").scrollIntoView({behavior:reduce?"auto":"smooth",block:"nearest"}); });
+// deep links for demos: #map/<where|stress|drought|dual|rules>/<STATE>/<2016|2021>
+function applyDeep(d){ const L=["where","stress","drought","dual","rules"], i=L.indexOf((d[0]||"").toLowerCase());
+  const st=(d[1]||"").toUpperCase(), w=d[2]==="2021"?"2021":d[2]==="2016"?"2016":null;
+  if(w){ winSel=w; map.win(w); }
+  if(i>=0) setCh(i);
+  if(st&&NAME[st]) pickState(st);
+}
 setCh(0); card(null);
 show(location.hash.slice(1)||"home");
 </script>
